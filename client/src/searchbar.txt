@@ -1,0 +1,169 @@
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import stateApi from "../../redux/apis/stateApi";
+
+function Searchbar() {
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filteredData, setFilteredData] = useState([]);
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const data = useSelector((state) => state.state.data);
+    console.log({data})
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(stateApi());
+    }, [dispatch]);
+
+    // Update filteredData when data or searchQuery changes
+    useEffect(() => {
+        if (data) {
+            const filtered = data.filter(state =>
+                state.state.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                state.districts.some(district =>
+                    district.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+            );
+            setFilteredData(filtered);
+        }
+    }, [data, searchQuery]);
+
+    const handleSearchInputChange = (e) => {
+        const query = e.target.value;
+        setSearchQuery(query);
+        setShowDropdown(query ? true : false);
+    };
+
+    const handleItemClick = (item) => {
+        // Search for the input within the districts array
+        const matchingDistrict = item.districts.find(district =>
+            district.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        // If a matching district is found, update the search query to include the district
+        const updatedQuery = matchingDistrict ? `${matchingDistrict}, ${item.state}` : item.state;
+        setSearchQuery(updatedQuery);
+        setShowDropdown(false);
+    };
+
+    return (
+        <div>
+            <div className="dropdown">
+                <input
+                    type="search"
+                    placeholder="Search state or district..."
+                    value={searchQuery}
+                    onChange={handleSearchInputChange}
+                    className="form-control me-2 search-Form-Divs-Input"
+                />
+                {showDropdown && (
+                    <div className="dropdown-menu show dropdown-div">
+                        {filteredData.map((state, index) => (
+                            <button
+                                key={index}
+                                className="dropdown-item"
+                                onClick={() => handleItemClick(state)}
+                            >
+                                {/* Display the dynamically searched district */}
+                                {searchQuery}, {state.state}
+                            </button>
+                        ))}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
+
+export default Searchbar;
+
+
+
+
+
+
+
+
+
+
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import stateApi from "../../redux/apis/stateApi";
+
+function Searchbar() {
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filteredData, setFilteredData] = useState([]);
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const data = useSelector((state) => state.state.data);
+    console.log({data})
+    const dispatch = useDispatch();
+    let districts =[]
+ for (let key of data){
+           districts.push(key.districts)
+ }
+
+ let allDistricts = districts.flat();
+
+    useEffect(() => {
+        dispatch(stateApi());
+    }, [dispatch]);
+
+    // Update filteredData when data or searchQuery changes
+    useEffect(() => {
+        if (data) {
+            const filtered = data.filter(state =>
+                state.state.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                state.districts.some(district =>
+                    district.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+            );
+            setFilteredData(filtered);
+        }
+    }, [data, searchQuery]);
+
+    const handleSearchInputChange = (e) => {
+        const query = e.target.value;
+        setSearchQuery(query);
+        setShowDropdown(query ? true : false);
+    };
+
+    const handleItemClick = (item) => {
+        // Search for the input within the districts array and append the first matching district
+        const matchingDistrict = item.districts.find(district =>
+            district.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        const updatedQuery = matchingDistrict ? `${matchingDistrict}, ${item.state}` : item.state;
+        setSearchQuery(updatedQuery);
+        setShowDropdown(false);
+    };
+
+    return (
+        <div >
+            <div className="dropdown">
+                <input
+                    type="search"
+                    placeholder="Search state or district..."
+                    value={searchQuery}
+                    onChange={handleSearchInputChange}
+                    className="form-control"
+                />
+                {showDropdown && (
+                    <div className="dropdown-menu show">
+                        {filteredData.map((state, index) => (
+                            <button
+                                key={index}
+                                className="dropdown-item"
+                                onClick={() => handleItemClick(state)}
+                            >
+                                {/* Display the dynamically searched district */}
+                                {searchQuery}, {state.state}
+                            </button>
+                        ))}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
+
+export default Searchbar;

@@ -1,0 +1,202 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+nav{
+  box-shadow: 1px 1px 15px silver;
+}
+.button {
+  background-color: #FA8B68;
+  padding: 10px 15px;
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  margin: 0 5px;
+  border: transparent;
+  border-radius: 10%;
+}
+
+nav a {
+  text-decoration: none;
+  list-style: none;
+  font-size: 15px;
+  font-weight: 700;
+  color: black;
+  margin: 0 5px;
+}
+
+nav div label {
+  font-weight: 800;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Additional styling for the Sign Up link */
+nav a{
+  font-weight: 700;
+  margin: 0 10px; /* Adjust the margin as needed */
+}
+
+.search-Form-Div {
+  background-image: url('../src/images/background.jpg');
+  background-size: cover; /* Adjust as needed */
+  background-position: center; /* Adjust as needed */
+  background-repeat: no-repeat;
+  height:70vh;
+  /* margin-top:80px; */
+  margin-bottom: 10vh;
+  padding-top: 80px;
+  background-color: white;
+}
+.search-Form-Div2{
+  /* border: 2px solid silver; */
+  display:flex;
+}
+
+.search-Form-Divs{
+ display:flex;
+ justify-content: space-around;
+ align-items: center;
+ border: 2px solid #9e9999;
+ /* box-shadow: 1px 1px 15px silver; */
+ box-sizing: border-box;
+ background-color: white;
+ border-radius: 10px;
+
+ padding:10px;
+}
+.faMagnifyingGlass{
+  font-size: 20px;
+  color:rgb(138, 130, 130);
+  padding:5px;
+}
+.search-Form-Divs-Input{
+border: none;
+  
+}
+.search-Form-Divs-Input:focus,
+.search-Form-Divs-Input:active {
+  outline: none !important;
+  border: 1px transparent !important; 
+  box-shadow: none !important; 
+}
+.dropdown-div{
+  max-height:30vh;
+  overflow:scroll;
+}
+.dropdown-div::-webkit-scrollbar {
+  display: none;
+}
+.custom-image {
+  max-width: 70%; 
+  height: auto; 
+}
+.public-div{
+  border: 2px solid #9e9999;
+ box-shadow: 1px 1px 15px silver;
+ border-radius: 10px;
+}
+
+.BusDetails-div{
+  height:96vh;
+  overflow: scroll;
+}
+.BusDetails-div::-webkit-scrollbar {
+  display: none;
+}
+.drop-Details{
+  z-index: 1;
+  position:fixed;
+  text-align: center;
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+  /* width:100%;
+  height:100%; */
+  /* margin-right: 200px;
+  padding-right: 200px; */
+  
+}
+.display-filters{
+  display:block;
+}
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 3rem;
+  height: 1.5em;
+  border: 2px solid #9e9999;
+  border-radius: 2px;
+ 
+}
+
+.checkbox.checked {
+  background-color: silver;
+}
+
+.seat {
+   
+  width: 0.5rem;
+  height: 1rem;
+  background-color: white;
+  border: 1px solid #9e9999;
+  position:relative;
+  border-radius: 2px;
+  top: 2px;
+  left: 2px;
+  opacity: 1;
+  border-radius: 2px;
+} 
+
+ 
+
+footer{
+  background-color:#E0E0E0;
+  
+}
+footer label{
+  color: #FA8B68;
+  font-size: 30px;
+  font-weight:800;
+}
+footer ul{
+  list-style: none;
+  text-decoration: none;
+}
+.footer-li{
+  color:#777474;
+  font-size:14px;
+  font-weight: 700;
+}
+hr {
+  border: 1px solid #9D9696;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3); 
+  
+  margin:0 5%;
+}
+@media (max-width:750px){
+  .search-Form-Div2{
+    
+    display:flex;
+    flex-direction: column;
+
+  }
+  .search-Form-Div {
+   padding-bottom:14vh;
+   margin-bottom: 0;
+  }
+  .search-Form-Divs{
+   padding:0;
+   align-items: flex-start;
+    
+   }
+   .display-filters{
+    display:none;
+  }
+}
+
+
