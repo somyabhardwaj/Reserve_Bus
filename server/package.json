@@ -4,7 +4,7 @@
   "description": "Backend for Reserve app",
   "main": "Server.js",
   "scripts": {
-    "start": "nodemon Server.js",
+    "start": "node Server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Somya Bhardwaj",
